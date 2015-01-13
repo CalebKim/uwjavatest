@@ -24,12 +24,32 @@ public class Person {
     return age;
   }
   
+  public void setAge(int newAge){
+	if (newAge < 0) {
+		throw new IllegalArgumentException("Age must be greater than 0");
+	} else {
+		age = newAge;
+	}
+  }
+  
   public String getName() {
     return name;
   }
   
+  public void setName(String newName) {
+	if (newName == null) {
+		throw new IllegalArgumentException("name cannot be null");
+	} else {
+		name = newName;
+	}
+  }
+  
   public double getSalary() {
     return salary;
+  }
+  
+  public void setSalary(double newSalary){
+	salary = newSalary;
   }
   
   public String getSSN() {
@@ -46,6 +66,15 @@ public class Person {
     return propertyChangeFired;
   }
 
+  @Override
+  public boolean equals(Object obj) {
+	if (!(obj instanceof Person)){
+		return false;
+	} else {
+		return ((obj.getName().equals(getName())) && (obj.getAge().equals(getAge())));
+	}
+  }
+  
   public double calculateBonus() {
     return salary * 1.10;
   }
