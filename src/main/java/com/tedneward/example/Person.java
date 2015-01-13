@@ -3,7 +3,7 @@ package com.tedneward.example;
 import java.beans.*;
 import java.util.*;
 
-public class Person {
+public class Person implements Comparable{
   private int age;
   private String name;
   private double salary;
@@ -92,9 +92,29 @@ public class Person {
   }
 
   public String tostring() {
-    return "{{FIXME}}";
+    return "[Person name:" + name +" age:" + age + " salary:" + salary +"]";
   }
 
+  public int compareTo(Person other) {
+	 if (getSalary() > other.getSalary) {
+		 return -1;
+	 } else if (getSalary() < other.getSalary()){
+		 return 1;
+	 } else {
+		 return 0;
+	 }
+	  
+  }
+  
+  public static ArrayList<Person> getNewardFamily() {
+	  List<Person> list = new ArrayList<Person>();
+	  list.add(new Person("Ted", 45, 250000));
+	  list.add(new Person("Charlotte", 43, 150000));
+	  list.add(new Person("Michael", 22, 10000));
+	  list.add(new Person("Matthew", 15, 0));
+	  return list;
+  }
+  
   // PropertyChangeListener support; you shouldn't need to change any of
   // these two methods or the field
   //
@@ -104,5 +124,7 @@ public class Person {
   }
   public void removePropertyChangeListener(PropertyChangeListener listener) {
       this.pcs.removePropertyChangeListener(listener);
+  }
+  
   }
 }
